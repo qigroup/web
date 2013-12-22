@@ -25,12 +25,12 @@ session_start();
 $output=0;
 if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
 	$output=1;
-else if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 	$output=2;
 else
 	{
 	$str='SELECT ID,Password,UserGroup FROM users WHERE Name="'.addslashes($_POST["username"]).'"';
-	mysql_select_db("XX_web", $mysql);
+	mysql_select_db($mysql_basic_db, $mysql);
 	if(!$result0=mysql_query($str,$mysql))
 		$output=3;
 	else 

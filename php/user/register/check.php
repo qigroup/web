@@ -34,12 +34,12 @@ require $document_root.'php/basic/top.php';
 			echo '<h4>密码不匹配，注册失败</h4>';
 		else if(!ereg("^[a-zA-Z0-9_\-]+@[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)+$",$_POST["email"]))
 			echo '<h4>邮箱格式错误，注册失败</h4>';
-		else if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+		else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 			echo '<h4>错误:不能连接服务器</h4>';
 		else
 			{
 			$str='SELECT ID FROM users WHERE Name="'.addslashes($_POST["username"]).'"';
-			mysql_select_db("XX_web", $mysql);
+			mysql_select_db($mysql_basic_db, $mysql);
 			if (!$result0=mysql_query($str,$mysql))
 				echo '<h4>错误：服务器内部错误</h4>';
 			else
@@ -62,7 +62,7 @@ require $document_root.'php/basic/top.php';
 						$_SESSION["username"]=$_POST["username"];
 						$subject = "用户激活";
 						$message = "欢迎您成为我们网站的用户，您的用户需要激活以使用。激活码为:".$code."。如果您并不期望受到本邮件，请忽略。\n\n\n\n\n\t此邮件为服务器自动发出，请勿回复。";
-						$headers = "XX@qigroup.xicp.net";
+						$headers = "From:".$email_sender."@".$email_hostname;
 						if(!mail($_POST["email"],$subject,$message,$headers))
 							echo '
 								<h4>激活邮件发送失败，请在激活页面中重新发送</h4>

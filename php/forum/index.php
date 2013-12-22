@@ -37,7 +37,7 @@ require $document_root.'php/basic/top.php';
 						<tr><th style="width:22em;"><h4 style="text-align:left;">最新动态</h4></th></tr>
 						<tr><td colspan="2"><hr /></td></tr>
 						<?php
-						if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+						if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 							echo '
 								<tr><th><h4>错误:不能连接服务器</h4></th></tr>
 								<tr><td colspan="2"><hr /></td></tr>
@@ -45,7 +45,7 @@ require $document_root.'php/basic/top.php';
 						else
 							{
 							$str='SELECT ID,GroupID,Name,LastUpdateTime From Topic WHERE Status!=-1 ORDER BY LastUpdateTime DESC';
-							mysql_select_db("XX_web_forum", $mysql);
+							mysql_select_db($mysql_forum_db, $mysql);
 							if (!$result0=mysql_query($str,$mysql))
 		 	 					echo '
 									<tr><th><h4>错误：服务器内部错误</h4></th></tr>
@@ -99,41 +99,21 @@ require $document_root.'php/basic/top.php';
 						<?php
 						if($_SESSION["login"]==-1)
 							echo '<tr><th><h4>您还未登录，请先登录</h4></th></tr>';
-						else if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+						else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 							echo '<tr><th><h4>错误:不能连接服务器</h4></th></tr>';
 						else
 							{
 							$str='SELECT Name,RegisterTime,LastLoginTime,UserGroup,RealName,Email From users WHERE ID='.$_SESSION["login"];
-							mysql_select_db("XX_web", $mysql);
+							mysql_select_db($mysql_basic_db, $mysql);
 							if (!$result0=mysql_query($str,$mysql))
 		 	 					echo '<tr><th><h4>错误：服务器内部错误</h4></th></tr>';
 							else
 								{
-								$data0=mysql_fetch_row($result0);
-								switch($data0[3])
-									{
-									case 0:
-										$data0[3]="超级管理员";
-										break;
-									case 1:
-										$data0[3]="高级管理员";
-										break;
-									case 10:
-										$data0[3]="中级管理员";
-										break;
-									case 100:
-										$data0[3]="未激活用户";
-										break;
-									case 1000:
-										$data0[3]="普通用户";
-										break;
-									default:
-										$data0[3]="未定义用户";
-									}
+								$data0=mysql_fetch_row($result0);									
 								echo '
 									<tr><td><p>用户名：'.htmlspecialchars($data0[0]).'</p></td></tr>
 									<tr><td><p>真实姓名：'.htmlspecialchars($data0[4]).'</p></td></tr>
-									<tr><td><p>用户类型：'.$data0[3].'</p></td></tr>
+									<tr><td><p>用户类型：'.GetGroupName($data0[3]).'</p></td></tr>
 									<tr><td><p>注册时间：'.$data0[1].'</p></td></tr>
 									<tr><td><p>最后一次登录时间：'.$data0[2].'</p></td></tr>
 									<tr><td><p>邮箱：'.htmlspecialchars($data0[5]).'</p></td></tr>
@@ -147,17 +127,17 @@ require $document_root.'php/basic/top.php';
 						<tr><th style="width:11em;"><h4 style="text-align:left;">讨论版块</h4></th></tr>
 						<tr><td colspan="2"><hr /></td></tr>
 						<?php
-						if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+						if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 							echo '<tr><th><h4>错误:不能连接服务器</h4></th></tr>';
 						else
 							{
 							$str='SELECT ID,Name,Manager,LastUpdateTime From Section WHERE Status!=-1 ORDER BY LastUpdateTime DESC';
-							mysql_select_db("XX_web_forum", $mysql);
+							mysql_select_db($mysql_forum_db, $mysql);
 							if (!$result0=mysql_query($str,$mysql))
 		 	 					echo '<tr><th><h4>错误：服务器内部错误</h4></th></tr>';
 							else
 								{
-								mysql_select_db("XX_web", $mysql);
+								mysql_select_db($mysql_basic_db, $mysql);
 								for(;$data0=mysql_fetch_row($result0);)
 									{
 									$str='SELECT Name From users WHERE ID='.$data0[2];

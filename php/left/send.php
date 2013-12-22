@@ -29,7 +29,7 @@ require $document_root.'php/basic/top.php';
 			echo "验证码错误，提交失败";
 		else if($_POST["left"]=="")
 			echo "内容为空，提交失败";
-		else if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+		else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 			echo "错误:不能连接服务器";
 		else
 			{
@@ -38,7 +38,7 @@ require $document_root.'php/basic/top.php';
 			$left=$_POST["left"];
 			$leftname=$_POST["leftname"];
 			$str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.addslashes($leftname).'","'.$time.'","'.addslashes($left).'")';
-			mysql_select_db("XX_web", $mysql);
+			mysql_select_db($mysql_basic_db, $mysql);
 			if (!mysql_query($str,$mysql))
 		 	 	echo "错误：服务器内部错误";
 			else echo "提交成功";
