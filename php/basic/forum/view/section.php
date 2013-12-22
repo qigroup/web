@@ -172,7 +172,7 @@
 		 	 					echo '<tr><th><h4>错误：服务器内部错误</h4></th></tr>';
 							else
 								{
-								mysql_select_db("XX_web", $mysql);
+								mysql_select_db($mysql_basic_db, $mysql);
 								for(;$data0=mysql_fetch_row($result0);)
 									{
 									$str='SELECT Name From users WHERE ID='.$data0[2];
