@@ -32,6 +32,6 @@ require 'config.php';
 			<span style="transform:scaleX(-1);display:inline-block;">&copy;</span>
 			2012-2013 Qi Group
 		</small></p>
-		<p class="TCenter"><small>（本网站以<a href="http://www.gnu.org/copyleft/gpl.html"><img src="/images/gplv3_88.png" style="border:0;width:88px;height:31px" alt="GPLv3" title="GPLv3" /></a>发布，您可以获得<?php echo '<a href="ftp://'.$ftp_hostname.'/php_sources/" title="ftp服务器">本网站的源代码</a>'; ?>,并可以在不通知作者的情况下制作、发布其衍生作品。但必须以相同的许可证发布。）</small></p>
+		<p class="TCenter"><small>（本网站以<a href="http://www.gnu.org/copyleft/gpl.html"><img src="/images/gplv3_88.png" style="border:0;width:88px;height:31px" alt="GPLv3" title="GPLv3" /></a>发布，您可以获得<?php echo '<a href="'.$source_root.'web/" title="Github">本网站的源代码</a>'; ?>,并可以在不通知作者的情况下制作、发布其衍生作品。但必须以相同的许可证发布。）</small></p>
 	</body>
 </html>

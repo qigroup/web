@@ -38,11 +38,12 @@ require $document_root.'php/basic/top.php';
 					</tr>
 					<tr>
 						<td><p>000</p></td>
-						<td><p><a href="ftp://qigroup.xicp.net/works/Qi/">歧（Qi） Beta1.01</a></p></td>
+						<td><p><?php echo '<a href="'.$source_root.'qi/">歧（Qi） Beta1.01</a>'; ?></p></td>
 					</tr>
 				</table></td>
 				<td>
 					<h2><a href="ftp://qigroup.xicp.net/" >ftp服务器</a></h2>
+					<h2><a href="http://github.com/qigroup/" >Github</a></h2>
 					<h2><a href="http://qigroup.xicp.net:2012/browserquest/" >BrowserQuest</a></h2>
 				</td>
 			</tr>
