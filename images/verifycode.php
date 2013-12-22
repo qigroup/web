@@ -71,7 +71,7 @@ else
 		imagesetpixel($img,mt_rand(0,$width),mt_rand(0,$height),$font_color);
 		}
 	//输出
-	@imagefttext($img,$size,0,5,$size+3,$text_color,'/var/www/fonts/FreeMonoBold.ttf',$code);
+	@imagefttext($img,$size,0,5,$size+3,$text_color,$document_root.'fonts/FreeMonoBold.ttf',$code);
 	header("Cache-Control:max-age=1,s-maxage=1,no-cache,must-revalidate");
 	header("Content-type:image/png;charset=utf-8");
 	imagepng($img);
