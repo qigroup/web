@@ -30,12 +30,12 @@ require $document_root.'php/basic/top.php';
 			echo '<h4>用户名不匹配，激活失败</h4>';
 		else if($_POST["activationcode"]!=$_SESSION["activationcode"])
 			echo '<h4>激活码错误，激活失败</h4>';
-		else if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+		else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 			echo '<h4>错误:不能连接服务器</h4>';
 		else
 			{
 			$str='SELECT Password FROM users WHERE Name="'.addslashes($_POST["username"]).'"';
-			mysql_select_db("XX_web", $mysql);
+			mysql_select_db($mysql_basic_db, $mysql);
 			if(!$result0=mysql_query($str,$mysql))
 				echo '<h4>错误：服务器内部错误</h4>';
 			else

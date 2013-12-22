@@ -28,12 +28,12 @@ require $document_root.'php/basic/top.php';
 			<?php
 			if($_SESSION["login"]==-1)
 				echo '<tr><th><h4>您还未登录，请先登录</h4></th></tr>';
-			else if(!$mysql=mysql_connect("localhost","XX_web","xx"))
+			else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 				echo '<tr><th><h4>错误:不能连接服务器</h4></th></tr>';
 			else
 				{
 				$str='SELECT Name,RegisterTime,LastLoginTime,UserGroup,RealName,Email From users WHERE ID='.$_SESSION["login"];
-				mysql_select_db("XX_web", $mysql);
+				mysql_select_db($mysql_basic_db, $mysql);
 				if (!$result0=mysql_query($str,$mysql))
 		 	 		echo '<tr><th><h4>错误：服务器内部错误</h4></th></tr>';
 				else

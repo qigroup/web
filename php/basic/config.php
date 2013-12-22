@@ -23,5 +23,6 @@ $mysql_basic_db="";
 $mysql_forum_db="";
 $web_hostname="";
 $source_root="http://github.com/qigroup/";
+$email_hostname="";
 $email_sender="";
 ?>

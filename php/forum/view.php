@@ -33,7 +33,7 @@ require $document_root.'php/basic/top.php';
 			require $document_root.'php/basic/forum/view/section.php';
 		else if(isset($_GET["user"]))
 			require $document_root.'php/basic/forum/view/user.php';
-		else echo '<h1>请选择浏览类别</h1>';
+		else echo '<h4>请选择浏览类别</h4>';
 		?>
 <?php 
 require $document_root.'php/basic/bottom.php';
