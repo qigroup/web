@@ -69,4 +69,10 @@ else
 				table-layout:fixed;
 				word-wrap:break-word;
 				}
+			.border
+				{
+				border:2px solid;
+				border-radius:2em;
+				padding:2em;
+				}
 		</style>

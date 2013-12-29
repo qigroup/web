@@ -15,9 +15,9 @@
 */
 ?>
 		<h1>歧论坛</h1>
-		<table style="margin:0 auto;">
+		<table style="margin:0 auto;width:60em;">
 			<tr>
-				<td><table>
+				<td style="width:60%;"><table style="width:100%;">
 					<tr><td>
 					<?php
 					if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
@@ -38,8 +38,8 @@
 					mysql_close($mysql);
 					?>
 					</td></tr>
-					<tr><td><table style="border:2px solid;border-radius:2em;padding:2em;width:40em;">
-						<tr><th style="width:22em;"><h4 style="text-align:left;">最新动态</h4></th></tr>
+					<tr><td><table class="border" style="width:100%;">
+						<tr><th style="width:55%;"><h4 style="text-align:left;">最新动态</h4></th></tr>
 						<tr><td colspan="2"><hr /></td></tr>
 						<?php
 						if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
@@ -87,8 +87,8 @@
 						mysql_close($mysql);
 						?>
 					</table></td></tr>
-					<tr><td><table style="border:2px solid;border-radius:2em;padding:2em;width:40em;">
-						<tr><th style="width:22em;"><h4 style="text-align:left;">讨论组</h4></th></tr>
+					<tr><td><table class="border" style="width:100%;">
+						<tr><th style="width:55%;"><h4 style="text-align:left;">讨论组</h4></th></tr>
 						<tr><td colspan="2"><hr /></td></tr>
 						<?php
 						if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
@@ -128,8 +128,8 @@
 						?>
 					</table></td></tr>
 				</table></td>
-				<td><table>
-					<tr><td><table style="border:2px solid;border-radius:2em;padding:2em;width:25em;">
+				<td style="width:40%;"><table style="width:100%;">
+					<tr><td><table class="border" style="width:100%;">
 						<tr><th><h4 style="text-align:left;">用户资料</h4></th></tr>
 						<?php
 						if($_SESSION["login"]==-1)
@@ -158,8 +158,8 @@
 						mysql_close($mysql);
 						?>
 					</table></td></tr>
-					<tr><td><table style="border:2px solid;border-radius:2em;padding:2em;width:25em;">
-						<tr><th style="width:11em;"><h4 style="text-align:left;">讨论版块</h4></th></tr>
+					<tr><td><table class="border" style="width:100%;">
+						<tr><th style="width:40%;"><h4 style="text-align:left;">讨论版块</h4></th></tr>
 						<tr><td colspan="2"><hr /></td></tr>
 						<?php
 						if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))

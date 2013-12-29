@@ -32,10 +32,10 @@ else
 	}
 mysql_close($mysql);
 ?>
-		<table style="margin:0 auto;border:2px solid;border-radius:2em;padding:2em;width:60em;">
+		<table class="border" style="margin:0 auto;width:60em;">
 			<tr>
-				<th style="width:18em;border-right:solid 1px #D0D0D0;"><h3>用户信息</h3></th>
-				<th style="width:38em;"><h3>发表内容</h3></th>
+				<th style="width:30%;border-right:solid 1px #D0D0D0;"><h3>用户信息</h3></th>
+				<th style="width:70%;"><h3>发表内容</h3></th>
 			</tr>
 			<tr><td colspan="2"><hr /></td></tr>
 						<?php
@@ -87,10 +87,10 @@ mysql_close($mysql);
 													<p style="text-align:right;"><small>'.$i0.'层0亚层</small></p>
 													<p style="text-align:right;"><small>'.$data1[2].'</small></p>
 													<hr />
-													<table style="width:37em;">
+													<table style="width:100%;">
 														<tr>
-															<th style="width:14em;border-right:solid 1px #D0D0D0;"><h4 class="close">用户信息</h4></th>
-															<th style="width:23em;"><h4 class="close">发表内容</h4></th>
+															<th style="width:40%;border-right:solid 1px #D0D0D0;"><h4 class="close">用户信息</h4></th>
+															<th style="width:60%;"><h4 class="close">发表内容</h4></th>
 														</tr>
 														<tr><td colspan="2"><hr /></td></tr>
 										';
