@@ -25,6 +25,23 @@ require $document_root.'php/basic/top.php';
 ?>
 		<h1>发表内容</h1>
 		<h2>开发中。。。</h2>
+		<?php
+		if(!isset($_POST["topic"]))
+			echo '<h4>未指定主题，提交失败</h4>';
+		if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
+			echo "<h4>验证码错误，提交失败</h4>";
+		else if($_POST["content"]=="")
+			echo "<h4>内容为空，提交失败</h4>";
+		else
+			{
+				$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password);
+				$str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.addslashes($_POST["leftname"]).'","'.GetTimestamp().'","'.addslashes($_POST["left"]).'")';
+				mysql_select_db($mysql_forum_db, $mysql);
+				mysql_query($str,$mysql);
+			}
+		mysql_close($mysql);
+		unset($_SESSION["verifycode".$_POST["random"]]);
+		?>
 <?php
 require $document_root.'php/basic/bottom.php';
 ?>

@@ -23,7 +23,7 @@ require $document_root.'php/basic/head.php';
 <?php 
 require $document_root.'php/basic/top.php';
 ?>
-		<table style="margin:0 auto;border:2px solid;border-radius:2em;padding:2em 10em;">
+		<table class="border" style="margin:0 auto;width:60em;">
 			<tr><th colspan="2"><h1>用户控制中心</h1></th></tr>
 			<?php
 			if($_SESSION["login"]==-1)

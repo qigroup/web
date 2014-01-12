@@ -37,7 +37,6 @@ mysql_close($mysql);
 				<th style="width:30%;border-right:solid 1px #D0D0D0;"><h3>用户信息</h3></th>
 				<th style="width:70%;"><h3>发表内容</h3></th>
 			</tr>
-			<tr><td colspan="2"><hr /></td></tr>
 						<?php
 							if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
 							echo '
@@ -48,7 +47,7 @@ mysql_close($mysql);
 							{
 							for($i0=0;$i0<$data0[1];$i0++)
 								{
-								$str='SELECT UserID,Content,Time From '.$_GET["topic"].'_'.$i0.' WHERE Status!=-1 ORDER BY ID';
+								$str='SELECT UserID,Content,Time From Topic'.$_GET["topic"].' WHERE Status!=-1 AND Floor='.$i0.' ORDER BY ID';
 								mysql_select_db($mysql_forum_db, $mysql);
 								if (!$result1=mysql_query($str,$mysql))
 		 	 						echo '
@@ -74,6 +73,7 @@ mysql_close($mysql);
 											{
 											$data2=mysql_fetch_row($result2);
 											echo '
+												<tr><td colspan="2"><a name="f'.$i0.'"><hr /></a></td></tr>
 												<tr>
 													<td style="border-right:solid 1px #D0D0D0;">
 														<p><a href="/php/forum/view.php?user='.$data1[0].'">'.htmlspecialchars($data2[0]).'</a></p>
@@ -92,7 +92,6 @@ mysql_close($mysql);
 															<th style="width:40%;border-right:solid 1px #D0D0D0;"><h4 class="close">用户信息</h4></th>
 															<th style="width:60%;"><h4 class="close">发表内容</h4></th>
 														</tr>
-														<tr><td colspan="2"><hr /></td></tr>
 										';
 										for($i1=1;$data1=mysql_fetch_row($result1);$i1++)
 											{
@@ -101,6 +100,7 @@ mysql_close($mysql);
 												$result2=mysql_query($str,$mysql);
 												$data2=mysql_fetch_row($result2);
 												echo '
+													<tr><td colspan="2"><a name="f'.$i0.'g'.$i1.'"><hr /></a></td></tr>
 													<tr>
 														<td style="border-right:solid 1px #D0D0D0;">
 															<p><a href="/php/forum/view.php?user='.$data1[0].'">'.htmlspecialchars($data2[0]).'</a></p>
@@ -112,22 +112,23 @@ mysql_close($mysql);
 															<p style="text-align:right;"><small>'.$data1[2].'</small></p>
 														</td>
 													</tr>
-													<tr><td colspan="2"><hr /></td></tr>
 												';
 											}
 										echo '
+														<tr><td colspan="2"><hr /></td></tr>
 														<tr><td colspan="2"><h4 style="text-align:right;" class="close"><a href="write.php?topic='.$_GET["topic"].'&floor='.$i0.'">回复</a></h4></td></tr>
 													</table>
 												</td>
 											</tr>
-											<tr><td colspan="2"><hr /></td></tr>
 										';
 										}
 									}
 								}
 							}
 						mysql_close($mysql);
-						echo '<tr><td colspan="2"><h2><a href="write.php?topic='.$_GET["topic"].'">回复</a></h2></td></tr>';
+						echo '
+							<tr><td colspan="2"><hr /></td></tr>
+							<tr><td colspan="2"><h2><a href="write.php?topic='.$_GET["topic"].'">回复</a></h2></td></tr>';
 						?>
 			<tr><td colspan="2"><hr /></td></tr>
 		</table>

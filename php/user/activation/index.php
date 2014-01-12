@@ -25,7 +25,7 @@ require $document_root.'php/basic/javascript/refresh.php';
 require $document_root.'php/basic/top.php';
 ?>
 		<form action="check.php" method="post">
-			<table style="text-align:right;margin:0 auto;border:2px solid;border-radius:2em;padding:2em 10em;">
+			<table class="border" style="text-align:right;margin:0 auto;">
 				<tr><th><h1>用户激活</h1></th></tr>
 				<tr><td><p>用户名：<input type="text" name="username" /></p></td></tr>
 				<tr><td><p>密码：<input type="password" name="password" /></p></td></tr>
