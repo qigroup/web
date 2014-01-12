@@ -43,9 +43,7 @@ else
 		else
 			{
 			$_SESSION["login"]=$data0[0];
-			$time=time();
-			$time=date("YmdHis",$time);
-			$str='UPDATE users SET LastLoginTime="'.$time.'" WHERE ID='.$data0[0];
+			$str='UPDATE users SET LastLoginTime="'.GetTimestamp().'" WHERE ID='.$data0[0];
 			mysql_query($str,$mysql);
 			}
 		}

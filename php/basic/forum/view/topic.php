@@ -47,7 +47,7 @@ mysql_close($mysql);
 							{
 							for($i0=0;$i0<$data0[1];$i0++)
 								{
-								$str='SELECT UserID,Content,Time From '.$_GET["topic"].'_'.$i0.' WHERE Status!=-1 ORDER BY ID';
+								$str='SELECT UserID,Content,Time From Topic'.$_GET["topic"].' WHERE Status!=-1 AND Floor='.$i0.' ORDER BY ID';
 								mysql_select_db($mysql_forum_db, $mysql);
 								if (!$result1=mysql_query($str,$mysql))
 		 	 						echo '

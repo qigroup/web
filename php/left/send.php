@@ -33,15 +33,13 @@ require $document_root.'php/basic/top.php';
 			echo "错误:不能连接服务器";
 		else
 			{
-			$time=time();
-			$time=date("YmdHis",$time);
-			$left=$_POST["left"];
-			$leftname=$_POST["leftname"];
-			$str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.addslashes($leftname).'","'.$time.'","'.addslashes($left).'")';
-			mysql_select_db($mysql_basic_db, $mysql);
-			if (!mysql_query($str,$mysql))
-		 	 	echo "错误：服务器内部错误";
-			else echo "提交成功";
+				$left=$_POST["left"];
+				$leftname=$_POST["leftname"];
+				$str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.addslashes($_POST["leftname"]).'","'.GetTimestamp().'","'.addslashes($_POST["left").'")';
+				mysql_select_db($mysql_basic_db, $mysql);
+				if (!mysql_query($str,$mysql))
+					echo "错误：服务器内部错误";
+				else echo "提交成功";
 			}
 		mysql_close($mysql);
 		unset($_SESSION["verifycode".$_POST["random"]]);

@@ -48,4 +48,11 @@ function EchoVerifyCode()
 		<small>（区分大小写）</small>
 	';
 }
+
+function GetTimestamp()
+{
+	$time=time();
+	$timestamp=date("YmdHis",$time);
+	return $timestamp;
+}
 ?>
