@@ -48,9 +48,7 @@ require $document_root.'php/basic/top.php';
 					echo '<h4>用户已存在，注册失败</h4>';
 				else
 					{
-					$time=time();
-					$time=date("YmdHis",$time);
-					$str='INSERT INTO users (Name,Password,RegisterTime,RealName,Email) VALUES ("'.addslashes($_POST["username"]).'","'.passwdcrypt($_POST["password"]).'","'.$time.'","'.addslashes($_POST["realname"]).'","'.addslashes($_POST["email"]).'");';
+					$str='INSERT INTO users (Name,Password,RegisterTime,RealName,Email) VALUES ("'.addslashes($_POST["username"]).'","'.passwdcrypt($_POST["password"]).'","'.GetTimestamp().'","'.addslashes($_POST["realname"]).'","'.addslashes($_POST["email"]).'");';
 					if(!mysql_query($str,$mysql))
 						echo '<h4>错误：服务器内部错误</h4>';
 					else
