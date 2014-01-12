@@ -30,10 +30,8 @@ require $document_root.'php/basic/top.php';
 			<p class="TCenter">
 				<textarea rows="20" cols="80" name="content" ></textarea>
 				<?php
-					echo '
-						<input type="hidden" name="topic" value="'.$_GET["topic"].'" />
-						
-					';
+					foreach(array_keys($_GET) as $get_name)
+						echo '<input type="hidden" name="'.htmlspecialchars($get_name).'" value="'.htmlspecialchars($_GET[$get_name]).'" />';
 				?>
 			</p>
 			<p class="TCenter">

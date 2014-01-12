@@ -33,7 +33,7 @@ require $document_root.'php/basic/javascript/refresh.php';
 require $document_root.'php/basic/top.php';
 ?>
 		<form action="check.php" method="post">
-			<table style="text-align:right;margin:0 auto;border:2px solid;border-radius:2em;padding:2em 10em;">
+				<table class="border" style="text-align:right;margin:0 auto;">
 				<tr><th><h1>修改密码</h1></th></tr>
 				<tr><td><p>原密码：<input type="password" name="old-password" /></p></td></tr>
 				<tr><td><p>新密码：<input type="password" name="password" /></p></td></tr>

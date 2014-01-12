@@ -28,7 +28,7 @@ require $document_root.'php/basic/top.php';
 			<span style="color:#6688FF;">欢迎来到</span>
 			<span style="color:#FFFF00;">歧研发小组</span>
 		</big></h1>
-		<table style="margin:0 auto;border:2px solid;border-radius:2em;padding:2em 10em;">
+		<table class="border" style="margin:0 auto;">
 			<tr>
 				<td style="padding-right:10em;"><table border="1">
 					<tr><th colspan="2"><h2>作品展示</h2></th></tr>
@@ -42,9 +42,7 @@ require $document_root.'php/basic/top.php';
 					</tr>
 				</table></td>
 				<td>
-					<h2><a href="ftp://qigroup.xicp.net/" >ftp服务器</a></h2>
 					<h2><a href="http://github.com/qigroup/" >Github</a></h2>
-					<h2><a href="http://qigroup.xicp.net:2012/browserquest/" >BrowserQuest</a></h2>
 				</td>
 			</tr>
 		</table>
