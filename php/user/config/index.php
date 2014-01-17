@@ -41,7 +41,7 @@ require $document_root.'php/basic/top.php';
 					$data0=mysql_fetch_row($result0);
 					echo '
 						<tr>
-							<td style="padding-right:10em;"><table>
+							<td><table>
 								<tr><th><h3>基本信息</h3></th></tr>
 								<tr><td><p>用户名：'.htmlspecialchars($data0[0]).'</p></td></tr>
 								<tr><td><p>真实姓名：'.htmlspecialchars($data0[4]).'</p></td></tr>

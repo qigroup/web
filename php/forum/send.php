@@ -28,6 +28,8 @@ require $document_root.'php/basic/top.php';
 		<?php
 		if(!isset($_POST["topic"]))
 			echo '<h4>未指定主题，提交失败</h4>';
+		else if(!isset($_POST["floor"]))
+			echo '<h4>未指定层，提交失败</h4>';
 		if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
 			echo "<h4>验证码错误，提交失败</h4>";
 		else if($_POST["content"]=="")
@@ -35,11 +37,29 @@ require $document_root.'php/basic/top.php';
 		else
 			{
 				$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password);
-				$str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.addslashes($_POST["leftname"]).'","'.GetTimestamp().'","'.addslashes($_POST["left"]).'")';
+				$str='SELECT Count FROM Topic WHERE ID='.$_POST["topic"].' AND Status!=-1';
 				mysql_select_db($mysql_forum_db, $mysql);
-				mysql_query($str,$mysql);
+				if(!$result0=mysql_query($str,$mysql))
+					echo '<h4>主题无效，提交失败</h4>';
+				else
+					{
+						$data0=mysql_fetch_row($result0);
+						if($_POST["floor"]>$data0[0]+1)
+							echo '<h4>层数错误，提交失败</h4>';
+						else
+							{
+								if($_POST["floor"]==$data0[0]+1)
+									{
+										$str='UPDATE Topic SET Count='.$_POST["floor"].' WHERE ID='.$_POST["topic"];
+										mysql_query($str,$mysql);
+									}
+								$str='INSERT INTO Topic_'.$_POST["topic"].' (Floor,UserID,Time,Content) VALUES ('.$_POST["floor"].','.$_SESSION["login"].',"'.GetTimestamp().'","'.addslashes($_POST["content"]).'")';
+								mysql_query($str,$mysql);
+								echo '<h4>提交成功</h4>';
+							}
+					}
+				mysql_close($mysql);
 			}
-		mysql_close($mysql);
 		unset($_SESSION["verifycode".$_POST["random"]]);
 		?>
 <?php

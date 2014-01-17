@@ -43,6 +43,8 @@ require $document_root.'php/basic/top.php';
 				</table></td>
 				<td>
 					<h2><a href="http://github.com/qigroup/" >Github</a></h2>
+					<h2><a href="ftp://www.xiexun.eu.org/" >ftp</a></h2>
+					<h2><a href="http://www.xiexun.eu.org:1998/browserquest/" >BrowserQuest</a></h2>
 				</td>
 			</tr>
 		</table>
