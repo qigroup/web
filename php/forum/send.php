@@ -24,7 +24,6 @@ require $document_root.'php/basic/head.php';
 require $document_root.'php/basic/top.php';
 ?>
 		<h1>发表内容</h1>
-		<h2>开发中。。。</h2>
 		<?php
 		if(!isset($_POST["topic"]))
 			echo '<h4>未指定主题，提交失败</h4>';
@@ -44,13 +43,13 @@ require $document_root.'php/basic/top.php';
 				else
 					{
 						$data0=mysql_fetch_row($result0);
-						if($_POST["floor"]>$data0[0]+1)
+						if($_POST["floor"]>$data0[0])
 							echo '<h4>层数错误，提交失败</h4>';
 						else
 							{
-								if($_POST["floor"]==$data0[0]+1)
+								if($_POST["floor"]==$data0[0])
 									{
-										$str='UPDATE Topic SET Count='.$_POST["floor"].' WHERE ID='.$_POST["topic"];
+										$str='UPDATE Topic SET Count='.($_POST["floor"]+1).' WHERE ID='.$_POST["topic"];
 										mysql_query($str,$mysql);
 									}
 								$str='INSERT INTO Topic_'.$_POST["topic"].' (Floor,UserID,Time,Content) VALUES ('.$_POST["floor"].','.$_SESSION["login"].',"'.GetTimestamp().'","'.addslashes($_POST["content"]).'")';
