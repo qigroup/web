@@ -25,7 +25,6 @@ require $document_root.'php/basic/javascript/refresh.php';
 require $document_root.'php/basic/top.php';
 ?>
 		<h1>发表内容</h1>
-		<h2>开发中。。。</h2>
 		<div><form action="send.php" method="post">
 			<p class="TCenter">
 				<textarea rows="20" cols="80" name="content" ></textarea>
