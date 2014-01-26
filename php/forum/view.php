@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2012-2013 Qi Group
+/*  Copyright 2012-2014 Qi Group     This file is a part of Qi Web.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -18,23 +18,23 @@
 require '../basic/config.php';
 ?>
 <?php
-require $document_root.'php/basic/head.php';
+require DOCUMENT_ROOT.'php/basic/head.php';
 ?>
-		
+    
 <?php 
-require $document_root.'php/basic/top.php';
+require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
-		<?php
-		if(isset($_GET["topic"]))
-			require $document_root.'php/basic/forum/view/topic.php';
-		else if(isset($_GET["group"]))
-			require $document_root.'php/basic/forum/view/group.php';
-		else if(isset($_GET["section"]))
-			require $document_root.'php/basic/forum/view/section.php';
-		else if(isset($_GET["user"]))
-			require $document_root.'php/basic/forum/view/user.php';
-		else echo '<h4>请选择浏览类别</h4>';
-		?>
+    <?php
+    if(isset($_GET["topic"]))
+      require DOCUMENT_ROOT.'php/basic/forum/view/topic.php';
+    else if(isset($_GET["group"]))
+      require DOCUMENT_ROOT.'php/basic/forum/view/group.php';
+    else if(isset($_GET["section"]))
+      require DOCUMENT_ROOT.'php/basic/forum/view/section.php';
+    else if(isset($_GET["user"]))
+      require DOCUMENT_ROOT.'php/basic/forum/view/user.php';
+    else echo '<h4>请选择浏览类别</h4>';
+    ?>
 <?php 
-require $document_root.'php/basic/bottom.php';
+require DOCUMENT_ROOT.'php/basic/bottom.php';
 ?>

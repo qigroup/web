@@ -15,7 +15,7 @@
 */
 ?>
 <?php
-require '../../basic/config.php';
+require '../../../basic/config.php';
 ?>
 <?php 
 require DOCUMENT_ROOT.'php/basic/head.php';
@@ -26,7 +26,7 @@ require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
     <form action="check.php" method="post">
       <table class="border" style="text-align:right;margin:0 auto;">
-        <tr><th><h1>用户登录</h1></th></tr>
+        <tr><th><h1>重新发送激活邮件</h1></th></tr>
         <tr><td><p>用户名：<input type="text" name="username" /></p></td></tr>
         <tr><td><p>密码：<input type="password" name="password" /></p></td></tr>
         <tr><td><p>
@@ -35,8 +35,7 @@ require DOCUMENT_ROOT.'php/basic/top.php';
         <tr><td><p>
           <?php EchoVerifyCode(); ?>
         </p></td></tr>
-        <tr><td><p><small><a href="/php/doc/manual.php">忘记密码</a></small></p></td></tr>
-        <tr><td><p class="TCenter"><input type="submit" value="登录" /></p></td></tr>
+        <tr><td><p class="TCenter"><input type="submit" value="发送" /></p></td></tr>
       </table>
     </form>
     <script type="text/javascript">refresh();</script>

@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2012-2013 Qi Group
+/*  Copyright 2012-2014 Qi Group     This file is a part of Qi Web.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -19,24 +19,24 @@ require '../basic/config.php';
 ?>
 <?php 
 $title="留言册";
-require $document_root.'php/basic/head.php';
-require $document_root.'php/basic/javascript/refresh.php';
+require DOCUMENT_ROOT.'php/basic/head.php';
+require DOCUMENT_ROOT.'php/basic/javascript/refresh.php';
 ?>
 <?php 
-require $document_root.'php/basic/top.php';
+require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
-		<h1>留言</h1>
-		<div><form action="send.php" method="post">
-			<p class="TCenter"><textarea rows="20" cols="80" name="left" ></textarea></p>
-			<p class="TCenter">
-				姓名：<input type="text" name="leftname" />
-				|
-				验证码：<input type="text" name="verifycode" />
-				<?php EchoVerifyCode(); ?>
-			</p>
-			<p class="TCenter"><input type="submit" value="提交" /></p>
-		</form></div>
-		<script type="text/javascript">refresh();</script>
+    <h1>留言</h1>
+    <div><form action="send.php" method="post">
+      <p class="TCenter"><textarea rows="20" cols="80" name="left" ></textarea></p>
+      <p class="TCenter">
+        姓名：<input type="text" name="leftname" />
+        |
+        验证码：<input type="text" name="verifycode" />
+        <?php EchoVerifyCode(); ?>
+      </p>
+      <p class="TCenter"><input type="submit" value="提交" /></p>
+    </form></div>
+    <script type="text/javascript">refresh();</script>
 <?php 
-require $document_root.'php/basic/bottom.php';
+require DOCUMENT_ROOT.'php/basic/bottom.php';
 ?>
