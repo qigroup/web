@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2012-2013 Qi Group
+/*  Copyright 2012-2014 Qi Group     This file is a part of Qi Web.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -19,10 +19,10 @@ require 'php/basic/config.php';
 ?>
 <?php 
 $title="主页";
-require  $document_root.'php/basic/head.php';
+require DOCUMENT_ROOT.'php/basic/head.php';
 ?>
 <?php 
-require $document_root.'php/basic/top.php';
+require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
 		<h1><big>
 			<span style="color:#6688FF;">欢迎来到</span>
@@ -38,7 +38,7 @@ require $document_root.'php/basic/top.php';
 					</tr>
 					<tr>
 						<td><p>000</p></td>
-						<td><p><?php echo '<a href="'.$source_root.'qi/">歧（Qi） Beta1.01</a>'; ?></p></td>
+						<td><p><?php echo '<a href="'.SOURCE_ROOT.'qi/">歧（Qi） Beta1.01</a>'; ?></p></td>
 					</tr>
 				</table></td>
 				<td>
@@ -47,5 +47,5 @@ require $document_root.'php/basic/top.php';
 			</tr>
 		</table>
 <?php 
-require $document_root.'php/basic/bottom.php';
+require DOCUMENT_ROOT.'php/basic/bottom.php';
 ?>

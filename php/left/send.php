@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2012-2013 Qi Group
+/*  Copyright 2012-2014 Qi Group     This file is a part of Qi Web.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -18,33 +18,31 @@
 require 'php/basic/config.php';
 ?>
 <?php 
-require $document_root.'php/basic/head.php';
+require DOCUMENT_ROOT.'php/basic/head.php';
 ?>
 <?php 
-require $document_root.'php/basic/top.php';
+require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
-		<h4>
-		<?php
-		if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
-			echo "验证码错误，提交失败";
-		else if($_POST["left"]=="")
-			echo "内容为空，提交失败";
-		else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
-			echo "错误:不能连接服务器";
-		else
-			{
-				$left=$_POST["left"];
-				$leftname=$_POST["leftname"];
-				$str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.addslashes($_POST["leftname"]).'","'.GetTimestamp().'","'.addslashes($_POST["left").'")';
-				mysql_select_db($mysql_basic_db, $mysql);
-				if (!mysql_query($str,$mysql))
-					echo "错误：服务器内部错误";
-				else echo "提交成功";
-			}
-		mysql_close($mysql);
-		unset($_SESSION["verifycode".$_POST["random"]]);
-		?>
-		</h4>
+    <h4>
+    <?php
+    if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
+      echo "验证码错误，提交失败";
+    else if($_POST["left"]=="")
+      echo "内容为空，提交失败";
+    else
+      {
+        $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
+        $left=$_POST["left"];
+        $leftname=$_POST["leftname"];
+        $str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.mysql_real_escape_string($_POST["leftname"]).'","'.GetTimestamp().'","'.mysql_real_escape_string($_POST["left"]).'")';
+        mysql_select_db(MYSQL_BASIC_DB,$mysql);
+        mysql_unbuffered_query($str,$mysql)
+        echo "提交成功";
+      }
+    mysql_close($mysql);
+    unset($_SESSION["verifycode".$_POST["random"]]);
+    ?>
+    </h4>
 <?php 
-require $document_root.'php/basic/bottom.php';
+require DOCUMENT_ROOT.'php/basic/bottom.php';
 ?>

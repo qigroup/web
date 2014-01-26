@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2012-2013 Qi Group
+/*  Copyright 2012-2014 Qi Group     This file is a part of Qi Web.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -15,14 +15,15 @@
 */
 ?>
 <?php
-$document_root="";
-$mysql_hostname="";
-$mysql_username="";
-$mysql_password="";
-$mysql_basic_db="";
-$mysql_forum_db="";
-$web_hostname="";
-$source_root="http://github.com/qigroup/";
-$email_hostname="";
-$email_sender="";
+const
+  DOCUMENT_ROOT="",
+  MYSQL_HOSTNAME="",
+  MYSQL_USERNAME="",
+  MYSQL_PASSWORD="",
+  MYSQL_BASIC_DB="",
+  MYSQL_FORUM_DB="",
+  WEB_HOSTNAME="",
+  SOURCE_ROOT="http://github.com/qigroup/",
+  EMAIL_HOSTNAME="",
+  EMAIL_SENDER="";
 ?>

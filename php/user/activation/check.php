@@ -1,5 +1,5 @@
 <?php
-/*  Copyright 2012-2013 Qi Group
+/*  Copyright 2012-2014 Qi Group     This file is a part of Qi Web.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -18,43 +18,37 @@
 require '../../basic/config.php';
 ?>
 <?php 
-require $document_root.'php/basic/head.php';
+require DOCUMENT_ROOT.'php/basic/head.php';
 ?>
 <?php 
-require $document_root.'php/basic/top.php';
+require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
-		<?php
-		if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
-			echo '<h4>验证码错误，激活失败</h4>';
-		else if($_POST["username"]!=$_SESSION["username"])
-			echo '<h4>用户名不匹配，激活失败</h4>';
-		else if($_POST["activationcode"]!=$_SESSION["activationcode"])
-			echo '<h4>激活码错误，激活失败</h4>';
-		else if(!$mysql=mysql_connect($mysql_hostname,$mysql_username,$mysql_password))
-			echo '<h4>错误:不能连接服务器</h4>';
-		else
-			{
-			$str='SELECT Password FROM users WHERE Name="'.addslashes($_POST["username"]).'"';
-			mysql_select_db($mysql_basic_db, $mysql);
-			if(!$result0=mysql_query($str,$mysql))
-				echo '<h4>错误：服务器内部错误</h4>';
-			else
-				{
-				$data0=mysql_fetch_row($result0);
-				if(passwdcrypt($_POST["password"])!=$data0[0])
-					echo '<h4>密码错误，激活失败</h4>';
-				else
-					{
-					$str='UPDATE users SET UserGroup=1000 WHERE Name='.addslashes($_POST["username"]).'"';
-					if(!mysql_query($str,$mysql))
-						echo '<h4>错误：服务器内部错误</h4>';
-					else echo '<h4>激活成功</h4>';
-					}
-				}
-			}
-		mysql_close($mysql);
-		unset($_SESSION["verifycode".$_POST["random"]]);
-		?>
+    <?php
+    if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
+      echo '<h4>验证码错误，激活失败</h4>';
+    else if($_POST["username"]!=$_SESSION["username"])
+      echo '<h4>用户名不匹配，激活失败</h4>';
+    else if($_POST["activationcode"]!=$_SESSION["activationcode"])
+      echo '<h4>激活码错误，激活失败</h4>';
+    else
+      {
+        $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
+        $str='SELECT Password FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"]).'"';
+        mysql_select_db(MYSQL_BASIC_DB, $mysql);
+        $result_users=mysql_query($str,$mysql);
+        $data_users=mysql_fetch_row($result_users);
+        if(passwdcrypt($_POST["password"])!=$data_users[0])
+          echo '<h4>密码错误，激活失败</h4>';
+        else
+          {
+            $str='UPDATE users SET UserGroup=1000 WHERE Name='.mysql_real_escape_string($_POST["username"]).'"';
+            mysql_unbuffered_query($str,$mysql);
+            echo '<h4>激活成功</h4>';
+          }
+      }
+    mysql_close($mysql);
+    unset($_SESSION["verifycode".$_POST["random"]]);
+    ?>
 <?php 
-require $document_rppt.'php/basic/bottom.php';
+require DOCUMENT_ROOT.'php/basic/bottom.php';
 ?>
