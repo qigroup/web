@@ -53,8 +53,8 @@ require DOCUMENT_ROOT.'php/basic/top.php';
               </table></td>
             </tr>
           ';
+          mysql_close($mysql);
         }
-      mysql_close($mysql);
       ?>
     </table>
 <?php 

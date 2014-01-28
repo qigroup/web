@@ -15,11 +15,15 @@
 */
 ?>
 <?php
+if(NO_ERRORS)
+  error_reporting(0);
+session_start();
+?>
+<?php
 require DOCUMENT_ROOT."php/basic/function.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <?php
-session_start();
 if(!isset($_SESSION["login"]))
   $_SESSION["login"]=-1;
 else 

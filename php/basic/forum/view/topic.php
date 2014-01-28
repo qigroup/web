@@ -15,8 +15,11 @@
 */
 ?>
 <?php
-$topic=mysql_real_escape_string($_GET["topic"]);
 $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
+if(!is_numeric($_GET["topic"]))
+  $topic=-1;
+else
+  $topic=(int)$_GET["topic"];
 $str='SELECT Name,Count From Topic WHERE ID='.$topic;
 mysql_select_db(MYSQL_FORUM_DB,$mysql);
 if(!$result_topic=mysql_query($str,$mysql))
@@ -43,7 +46,7 @@ mysql_close($mysql);
       else
         $page=(int)$_GET["page"];
       $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-      for($i0=($page-1)*$floors_per_page;$i0>=0&&$i0<$data0[1]&&$i0<$page*$floors_per_page;$i0++)
+      for($i0=($page-1)*$floors_per_page;$i0>=0&&$i0<$data_topic[1]&&$i0<$page*$floors_per_page;$i0++)
         {
           $str='SELECT UserID,Content,Time From Topic_'.$topic.' WHERE Status!=-1 AND Floor='.$i0.' ORDER BY ID';
           mysql_select_db(MYSQL_FORUM_DB,$mysql);
@@ -113,7 +116,7 @@ mysql_close($mysql);
       echo '
         <tr><td colspan="2"><hr /></td></tr>
         <tr><td colspan="2"><p><small>页数：';
-      EchoPageIndex($page,(int)(($data0[1]-1)/$floors_per_page+1),$echo_pages,'view.php?topic='.$topic.'&amp;');
+      EchoPageIndex($page,(int)(($data_topic[1]-1)/$floors_per_page+1),$echo_pages,'view.php?topic='.$topic.'&amp;');
       echo '</small></p></td></tr>';
       echo '
         <tr><td colspan="2"><hr /></td></tr>

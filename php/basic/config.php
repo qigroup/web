@@ -25,5 +25,6 @@ const
   WEB_HOSTNAME="",
   SOURCE_ROOT="http://github.com/qigroup/",
   EMAIL_HOSTNAME="",
-  EMAIL_SENDER="";
+  EMAIL_SENDER="",
+  NO_ERRORS=1;
 ?>

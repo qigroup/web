@@ -29,7 +29,7 @@ require DOCUMENT_ROOT.'php/basic/top.php';
     else
       {
         $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-        $str='SELECT Password,Email FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"]).'"';
+        $str='SELECT Password,Email FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"],$mysql).'"';
         mysql_select_db(MYSQL_BASIC_DB,$mysql);
         $result_users=mysql_query($str,$mysql);
         $data_users=mysql_fetch_row($result_users);
@@ -55,8 +55,8 @@ require DOCUMENT_ROOT.'php/basic/top.php';
                 <p class="PCenter"><a href="/php/user/activation/">用户激活</a></p>
               ';
           }
+        mysql_close($mysql);
       }
-    mysql_close($mysql);
     unset($_SESSION["verifycode".$_POST["random"]]);
     ?>
 <?php 

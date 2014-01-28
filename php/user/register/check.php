@@ -37,14 +37,14 @@ require DOCUMENT_ROOT.'php/basic/top.php';
     else
       {
         $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-        $str='SELECT ID FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"]).'"';
+        $str='SELECT ID FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"],$mysql).'"';
         mysql_select_db(MYSQL_BASIC_DB,$mysql);
         $result_users=mysql_query($str,$mysql);
         if($data_users=mysql_fetch_row($result_users))
           echo '<h4>用户已存在，注册失败</h4>';
         else
           {
-            $str='INSERT INTO users (Name,Password,RegisterTime,RealName,Email) VALUES ("'.mysql_real_escape_string($_POST["username"]).'","'.passwdcrypt($_POST["password"]).'","'.GetTimestamp().'","'.mysql_real_escape_string($_POST["realname"]).'","'.mysql_real_escape_string($_POST["email"]).'");';
+            $str='INSERT INTO users (Name,Password,RegisterTime,RealName,Email) VALUES ("'.mysql_real_escape_string($_POST["username"],$mysql).'","'.passwdcrypt($_POST["password"]).'","'.GetTimestamp().'","'.mysql_real_escape_string($_POST["realname"],$mysql).'","'.mysql_real_escape_string($_POST["email"],$mysql).'");';
             mysql_unbuffered_query($str,$mysql);
             $str="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             for($i=0;$i<20;$i++)
@@ -65,8 +65,8 @@ require DOCUMENT_ROOT.'php/basic/top.php';
               <p class="TCenter"><a href="/php/user/activation/">用户激活</a></p>
             ';
           }
+        mysql_close($mysql);
       }
-    mysql_close($mysql);
     unset($_SESSION["verifycode".$_POST["random"]]);
     ?>
 <?php 

@@ -19,7 +19,11 @@
             <tr><td colspan="2"><hr /></td></tr>
             <?php
             $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-            $str='SELECT ID,Name,Manager,LastUpdateTime From DiscussionGroup WHERE Status!=-1 AND SectionID='.mysql_real_escape_string($_GET["section"]).' ORDER BY LastUpdateTime DESC';
+            if(!is_numeric($_GET["section"]))
+              $section=-1;
+            else
+              $section=(int)$_GET["section"];
+            $str='SELECT ID,Name,Manager,LastUpdateTime From DiscussionGroup WHERE Status!=-1 AND SectionID='.$section.' ORDER BY LastUpdateTime DESC';
             mysql_select_db(MYSQL_FORUM_DB,$mysql);
             $result_group=mysql_query($str,$mysql);
             mysql_select_db(MYSQL_BASIC_DB,$mysql);
