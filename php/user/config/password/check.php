@@ -49,8 +49,8 @@ require DOCUMENT_ROOT.'php/basic/top.php';
             mysql_unbuffered_query($str,$mysql);
             echo '<h4>密码修改成功</h4>';
           }
+        mysql_close($mysql);
       }
-    mysql_close($mysql);
     unset($_SESSION["verifycode".$_POST["random"]]);
     ?>
 <?php 

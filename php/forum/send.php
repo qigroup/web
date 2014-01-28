@@ -25,9 +25,9 @@ require DOCUMENT_ROOT.'php/basic/top.php';
 ?>
     <h1>发表内容</h1>
     <?php
-    if(!isset($_POST["topic"]))
+    if(!is_numeric($_POST["topic"]))
       echo '<h4>未指定主题，提交失败</h4>';
-    else if(!isset($_POST["floor"]))
+    else if(!is_numeric($_POST["floor"]))
       echo '<h4>未指定层，提交失败</h4>';
     if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verifycode"]=="")
       echo "<h4>验证码错误，提交失败</h4>";
@@ -35,26 +35,28 @@ require DOCUMENT_ROOT.'php/basic/top.php';
       echo "<h4>内容为空，提交失败</h4>";
     else
       {
+        $floor=(int)$_POST["floor"];
+        $topic=(int)$_POST["topic"];
         $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-        $str='SELECT Count FROM Topic WHERE ID='.$_POST["topic"].' AND Status!=-1';
+        $str='SELECT Count FROM Topic WHERE ID='.$topic.' AND Status!=-1';
         mysql_select_db(MYSQL_FORUM_DB,$mysql);
         if(!$result_topic=mysql_query($str,$mysql))
           echo '<h4>主题无效，提交失败</h4>';
         else
           {
             $data_topic=mysql_fetch_row($result_topic);
-            if($_POST["floor"]>$data_topic[0])
+            if($floor>$data_topic[0])
               echo '<h4>层数错误，提交失败</h4>';
             else
               {
-                if($_POST["floor"]==$data_topic[0])
+                if($floor==$data_topic[0])
                   {
-                    $str='UPDATE Topic SET Count='.($_POST["floor"]+1).' WHERE ID='.$_POST["topic"];
+                    $str='UPDATE Topic SET Count='.($floor+1).' WHERE ID='.$topic;
                     mysql_unbuffered_query($str,$mysql);
                   }
-                $str='INSERT INTO Topic_'.$_POST["topic"].' (Floor,UserID,Time,Content) VALUES ('.$_POST["floor"].','.$_SESSION["login"].',"'.GetTimestamp().'","'.mysql_real_escape_string($_POST["content"]).'")';
+                $str='INSERT INTO Topic_'.$topic.' (Floor,UserID,Time,Content) VALUES ('.$floor.','.$_SESSION["login"].',"'.GetTimestamp().'","'.mysql_real_escape_string($_POST["content"],$mysql).'")';
                 mysql_unbuffered_query($str,$mysql);
-                $str='UPDATE Topic SET LastUpdateTime="'.GetTimestamp().'" WHERE ID='.$_POST["topic"];
+                $str='UPDATE Topic SET LastUpdateTime="'.GetTimestamp().'" WHERE ID='.$topic;
                 mysql_unbuffered_query($str,$mysql);
                 echo '<h4>提交成功</h4>';
               }

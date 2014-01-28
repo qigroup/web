@@ -31,8 +31,8 @@
           echo '
             <td style="text-align:right;"><p><small><a href="/php/user/config/" title="用户控制中心">'.htmlspecialchars($data_users[0]).'</a>|<a href="/php/user/logout/">注销</a></small></p></td>
           ';
+          mysql_close($mysql);
         }
-      mysql_close($mysql);
       ?>
     </tr></table>
     <hr style="margin-left:0;margin-right:0;margin-top:0;" />

@@ -34,7 +34,7 @@
                   <tr><td><p>最后一次登录时间：'.$data_users[2].'</p></td></tr>
                   <tr><td><p>邮箱：'.htmlspecialchars($data_users[5]).'</p></td></tr>
                 ';
+                mysql_close($mysql);
               }
-            mysql_close($mysql);
             ?>
           </table></td></tr>

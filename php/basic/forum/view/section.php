@@ -21,7 +21,11 @@
           <tr><td>
           <?php
           $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-          $str='SELECT Name From Section WHERE ID='.mysql_real_escape_string($_GET["section"]);
+          if(!is_numeric($_GET["section"]))
+            $section=-1;
+          else
+            $section=(int)$_GET["section"];
+          $str='SELECT Name From Section WHERE ID='.$section;
           mysql_select_db(MYSQL_FORUM_DB,$mysql);
           if(!$result_section=mysql_query($str,$mysql))
             echo '<h3>版块不存在</h3>';
@@ -32,7 +36,7 @@
           ?>
           </td></tr>
           <?php
-          $str_add='AND SectionID='.mysql_real_escape_string($_GET["section"]);
+          $str_add='AND SectionID='.$section;
           require DOCUMENT_ROOT.'php/basic/forum/block/topic.php';
           ?>
           <?php

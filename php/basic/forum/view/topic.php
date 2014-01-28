@@ -15,8 +15,11 @@
 */
 ?>
 <?php
-$topic=mysql_real_escape_string($_GET["topic"]);
 $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
+if(!is_numeric($_GET["topic"]))
+  $topic=-1;
+else
+  $topic=(int)$_GET["topic"];
 $str='SELECT Name,Count From Topic WHERE ID='.$topic;
 mysql_select_db(MYSQL_FORUM_DB,$mysql);
 if(!$result_topic=mysql_query($str,$mysql))

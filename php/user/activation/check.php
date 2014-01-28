@@ -33,7 +33,7 @@ require DOCUMENT_ROOT.'php/basic/top.php';
     else
       {
         $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-        $str='SELECT Password FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"]).'"';
+        $str='SELECT Password FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"],$mysql).'"';
         mysql_select_db(MYSQL_BASIC_DB, $mysql);
         $result_users=mysql_query($str,$mysql);
         $data_users=mysql_fetch_row($result_users);
@@ -41,12 +41,12 @@ require DOCUMENT_ROOT.'php/basic/top.php';
           echo '<h4>密码错误，激活失败</h4>';
         else
           {
-            $str='UPDATE users SET UserGroup=1000 WHERE Name='.mysql_real_escape_string($_POST["username"]).'"';
+            $str='UPDATE users SET UserGroup=1000 WHERE Name='.mysql_real_escape_string($_POST["username"],$mysql).'"';
             mysql_unbuffered_query($str,$mysql);
             echo '<h4>激活成功</h4>';
           }
+        mysql_close($mysql);
       }
-    mysql_close($mysql);
     unset($_SESSION["verifycode".$_POST["random"]]);
     ?>
 <?php 

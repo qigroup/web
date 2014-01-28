@@ -32,14 +32,12 @@ require DOCUMENT_ROOT.'php/basic/top.php';
     else
       {
         $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-        $left=$_POST["left"];
-        $leftname=$_POST["leftname"];
-        $str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.mysql_real_escape_string($_POST["leftname"]).'","'.GetTimestamp().'","'.mysql_real_escape_string($_POST["left"]).'")';
+        $str='INSERT INTO leftdata (UserID,Name,Time,Content) VALUES ('.$_SESSION["login"].',"'.mysql_real_escape_string($_POST["leftname"],$mysql).'","'.GetTimestamp().'","'.mysql_real_escape_string($_POST["left"],$mysql).'")';
         mysql_select_db(MYSQL_BASIC_DB,$mysql);
         mysql_unbuffered_query($str,$mysql)
         echo "提交成功";
+        mysql_close($mysql);
       }
-    mysql_close($mysql);
     unset($_SESSION["verifycode".$_POST["random"]]);
     ?>
     </h4>

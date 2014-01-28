@@ -18,7 +18,11 @@
       <tr><th><h1>查看用户资料</h1></th></tr>
       <?php
       $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-      $str='SELECT Name,RegisterTime,UserGroup From users WHERE ID='.mysql_real_escape_string($_GET["user"]);
+      if(!is_numeric($_GET["user"]))
+        $user=-1;
+      else
+        $user=(int)$_GET["user"];
+      $str='SELECT Name,RegisterTime,UserGroup From users WHERE ID='.$user;
       mysql_select_db(MYSQL_BASIC_DB,$mysql);
       $result_users=mysql_query($str,$mysql);
       if($data_users=mysql_fetch_row($result_users))

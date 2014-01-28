@@ -27,7 +27,7 @@ if($_POST["verifycode"]!=$_SESSION["verifycode".$_POST["random"]]||$_POST["verif
 else
   {
     $mysql=mysql_connect(MYSQL_HOSTNAME,MYSQL_USERNAME,MYSQL_PASSWORD);
-    $str='SELECT ID,Password,UserGroup FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"]).'"';
+    $str='SELECT ID,Password,UserGroup FROM users WHERE Name="'.mysql_real_escape_string($_POST["username"],$mysql).'"';
     mysql_select_db(MYSQL_BASIC_DB,$mysql);
     $result_users=mysql_query($str,$mysql);
     $data_users=mysql_fetch_row($result_users);
@@ -41,8 +41,8 @@ else
         $str='UPDATE users SET LastLoginTime="'.GetTimestamp().'" WHERE ID='.$data_users[0];
         mysql_unbuffered_query($str,$mysql);
       }
+    mysql_close($mysql);
   }
-mysql_close($mysql);
 unset($_SESSION["verifycode".$_POST["random"]]);
 ?>
 <?php 
